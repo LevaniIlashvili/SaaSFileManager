@@ -4,6 +4,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaaSFileManager.Api", "SaaSFileManager.Api\SaaSFileManager.Api.csproj", "{305F065D-1D64-4F5E-B84E-AD401FE5658C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{20A82482-E52E-4A5F-A5E8-18C7E3032BA5} = {20A82482-E52E-4A5F-A5E8-18C7E3032BA5}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaaSFileManager.Application", "SaaSFileManager.Application\SaaSFileManager.Application.csproj", "{D4435151-1505-4087-8442-D156C53469D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaaSFileManager.Core", "SaaSFileManager.Core\SaaSFileManager.Core.csproj", "{CB7C3BDE-295A-491A-823F-A3BC73A32F02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaaSFileManager.Infrastructure", "SaaSFileManager.Infrastructure\SaaSFileManager.Infrastructure.csproj", "{20A82482-E52E-4A5F-A5E8-18C7E3032BA5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B849FB13-DE73-4737-BD1D-9772B7526985}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +29,18 @@ Global
 		{305F065D-1D64-4F5E-B84E-AD401FE5658C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{305F065D-1D64-4F5E-B84E-AD401FE5658C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{305F065D-1D64-4F5E-B84E-AD401FE5658C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4435151-1505-4087-8442-D156C53469D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4435151-1505-4087-8442-D156C53469D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4435151-1505-4087-8442-D156C53469D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4435151-1505-4087-8442-D156C53469D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB7C3BDE-295A-491A-823F-A3BC73A32F02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB7C3BDE-295A-491A-823F-A3BC73A32F02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB7C3BDE-295A-491A-823F-A3BC73A32F02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB7C3BDE-295A-491A-823F-A3BC73A32F02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20A82482-E52E-4A5F-A5E8-18C7E3032BA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20A82482-E52E-4A5F-A5E8-18C7E3032BA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20A82482-E52E-4A5F-A5E8-18C7E3032BA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20A82482-E52E-4A5F-A5E8-18C7E3032BA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

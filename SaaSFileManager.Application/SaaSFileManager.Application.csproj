@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SaaSFileManager.Core\SaaSFileManager.Core.csproj" />
+  </ItemGroup>
+
 </Project>
