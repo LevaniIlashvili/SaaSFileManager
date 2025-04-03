@@ -6,10 +6,10 @@
         public string FileName { get; set; } = string.Empty;
         public byte[] FileContent { get; set; } = [];
         public int CompanyId { get; set; }
-        public Company Company = new();
+        public Company Company { get; set; } = new();
         public int UploadedById { get; set; }
         public User UploadedBy { get; set; } = new();
-        public bool IsPublic { get; set; }
+        public bool IsRestricted { get; set; }
         public List<User> AllowedUsers { get; set; } = [];
     }
 }

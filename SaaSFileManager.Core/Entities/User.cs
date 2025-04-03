@@ -7,9 +7,15 @@
         public string LastName { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string PasswordHash { get; set; } = string.Empty;
-        public int Role { get; set; } // 0 - Admin, 1 - Employee
-        public int IsActive { get; set; }
+        public UserRole Role { get; set; }
+        public bool IsActive { get; set; }
         public int CompanyId { get; set; }
         public Company Company = new();
+    }
+
+    public enum UserRole
+    {
+        Admin = 0,
+        Employee = 1
     }
 }

@@ -9,10 +9,11 @@
         public string Country { get; set; } = string.Empty;
         public string Industry { get; set; } = string.Empty;
         public bool IsActive { get; set; } = false;
-        public int SubscriptionPlanId { get; set; }
-        public SubscriptionPlan SubscriptionPlan { get; set; } = new ();
+        public int? SubscriptionPlanId { get; set; }
+        public SubscriptionPlan? SubscriptionPlan { get; set; }
+
         public List<User> Users { get; set; } = [];
         public List<UploadedFile> Files { get; set; } = [];
-        public Billing Billing { get; set; } = new();
+        public Billing? Billing { get; set; }
     }
 }
