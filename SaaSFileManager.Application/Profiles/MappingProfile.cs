@@ -1,0 +1,14 @@
+﻿using AutoMapper;
+using SaaSFileManager.Application.Features.Companies.Commands.CreateCompany;
+using SaaSFileManager.Domain.Entities;
+
+namespace SaaSFileManager.Application.Profiles
+{
+    public class MappingProfile : Profile
+    {
+        public MappingProfile()
+        {
+            CreateMap<CreateCompanyCommand, Company>().ReverseMap();
+        }
+    }
+}
