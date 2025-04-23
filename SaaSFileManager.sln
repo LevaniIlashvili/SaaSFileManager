@@ -20,7 +20,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaaSFileManager.Application", "SaaSFileManager.Application\SaaSFileManager.Application.csproj", "{8680442A-F4A6-4C5A-8003-0BC863190EFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaaSFileManager.Application", "SaaSFileManager.Application\SaaSFileManager.Application.csproj", "{8680442A-F4A6-4C5A-8003-0BC863190EFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaaSFileManager.Persistence", "SaaSFileManager.Persistence\SaaSFileManager.Persistence.csproj", "{23A91D1E-D9D0-4E28-B15E-5D425FB438BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,10 @@ Global
 		{8680442A-F4A6-4C5A-8003-0BC863190EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8680442A-F4A6-4C5A-8003-0BC863190EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8680442A-F4A6-4C5A-8003-0BC863190EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23A91D1E-D9D0-4E28-B15E-5D425FB438BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23A91D1E-D9D0-4E28-B15E-5D425FB438BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23A91D1E-D9D0-4E28-B15E-5D425FB438BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23A91D1E-D9D0-4E28-B15E-5D425FB438BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{8A5F878A-3036-4B26-8AAB-A8CEFF608BA8} = {860CF680-57E8-4B26-9CFD-84D064986C3F}
 		{39172957-BD36-4D44-9A3C-EDFCC38F94DC} = {3FB21BFF-706F-4AF6-8AB1-DD980131940A}
 		{8680442A-F4A6-4C5A-8003-0BC863190EFF} = {3FB21BFF-706F-4AF6-8AB1-DD980131940A}
+		{23A91D1E-D9D0-4E28-B15E-5D425FB438BF} = {8A5F878A-3036-4B26-8AAB-A8CEFF608BA8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F7A72131-87A0-427B-9530-E6351D3FB83C}
