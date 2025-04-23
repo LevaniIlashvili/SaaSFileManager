@@ -1,6 +1,6 @@
 ﻿namespace SaaSFileManager.Domain.Entities
 {
-    public class FileAccess
+    public class CompanyFileAccess
     {
         public Guid FileId { get; set; }
         public CompanyFile File { get; set; } = default!;

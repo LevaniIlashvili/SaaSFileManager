@@ -12,7 +12,7 @@ namespace SaaSFileManager.Domain.Entities
         public Company Company { get; set; } = default!;
 
         public bool IsRestricted { get; set; } = false;
-        public ICollection<FileAccess> FileAccesses { get; set; } = new List<FileAccess>();
+        public ICollection<CompanyFileAccess> FileAccesses { get; set; } = new List<CompanyFileAccess>();
     }
 
     public enum FileType
