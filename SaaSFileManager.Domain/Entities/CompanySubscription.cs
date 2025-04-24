@@ -7,7 +7,7 @@
         public Guid CompanyId { get; set; }
         public Company Company { get; set; } = default!;
 
-        public Guid SubscriptionPlanId { get; set; }
+        public int SubscriptionPlanId { get; set; }
         public SubscriptionPlan SubscriptionPlan { get; set; } = default!;
 
         public DateTime SubscribedAt { get; set; }
