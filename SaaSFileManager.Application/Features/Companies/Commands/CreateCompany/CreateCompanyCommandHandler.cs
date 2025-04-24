@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Options;
 using SaaSFileManager.Application.Contracts.Infrastructure;
 using SaaSFileManager.Application.Contracts.Persistence;
+using SaaSFileManager.Application.Models.Application;
 using SaaSFileManager.Domain.Entities;
 
 namespace SaaSFileManager.Application.Features.Companies.Commands.CreateCompany
