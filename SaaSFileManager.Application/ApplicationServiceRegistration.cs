@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SaaSFileManager.Application.Models.Application;
 
 namespace SaaSFileManager.Application
 {
