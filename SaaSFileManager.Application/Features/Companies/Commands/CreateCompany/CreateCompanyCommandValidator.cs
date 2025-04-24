@@ -20,7 +20,7 @@ namespace SaaSFileManager.Application.Features.Companies.Commands.CreateCompany
                 .NotEmpty().WithMessage("{PropertyName} is required.")
                 .NotNull()
                 .EmailAddress().WithMessage("Invalid email format")
-                .MustAsync(CompanyEmailUnique);
+                .MustAsync(CompanyEmailUnique).WithMessage("Company with this email already exists");
 
             RuleFor(p => p.Password)
                 .MinimumLength(8);
