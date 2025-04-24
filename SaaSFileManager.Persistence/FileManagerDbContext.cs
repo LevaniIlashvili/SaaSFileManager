@@ -10,6 +10,23 @@ namespace SaaSFileManager.Persistence
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<CompanyFileAccess>()
+                .HasOne(fa => fa.Employee)
+                .WithMany()
+                .HasForeignKey(fa => fa.EmployeeId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CompanyFileAccess>()
+                .HasOne(fa => fa.File)
+                .WithMany()
+                .HasForeignKey(fa => fa.FileId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+
         public DbSet<Company> Companies { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<CompanyFile> CompanyFiles { get; set; }
