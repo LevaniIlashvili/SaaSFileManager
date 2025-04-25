@@ -11,7 +11,7 @@ namespace SaaSFileManager.Domain.Entities
         public string Country { get; set; } = string.Empty;
         public string Industry { get; set; } = string.Empty;
         public bool IsActivated { get; set; }
-        public string ActivationToken { get; set; } = string.Empty;
+        public string? ActivationToken { get; set; }
 
         public ICollection<Employee> Employees { get; set; } = new List<Employee>();
 
