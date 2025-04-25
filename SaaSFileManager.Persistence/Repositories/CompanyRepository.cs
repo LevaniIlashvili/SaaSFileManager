@@ -15,5 +15,10 @@ namespace SaaSFileManager.Persistence.Repositories
         {
             return !await _dbContext.Companies.AnyAsync(c => c.Email == email);
         }
+
+        public async Task<Company?> GetByActivationToken(string token)
+        {
+            return await _dbContext.Companies.FirstOrDefaultAsync(c => c.ActivationToken == token);
+        }
     }
 }
