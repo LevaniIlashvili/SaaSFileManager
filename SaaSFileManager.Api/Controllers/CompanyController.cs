@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SaaSFileManager.Application.Features.Companies.Commands.ActivateCompany;
-using SaaSFileManager.Application.Features.Companies.Commands.CreateCompany;
+using SaaSFileManager.Application.Features.Auth.Commands.ActivateCompany;
 
 namespace SaaSFileManager.Api.Controllers
 {
@@ -14,24 +13,6 @@ namespace SaaSFileManager.Api.Controllers
         public CompanyController(IMediator mediator)
         {
             _mediator = mediator;
-        }
-
-        [HttpPost(Name = "CreateCompany")]
-        public async Task<IActionResult> Create([FromBody] CreateCompanyCommand createCompanyCommand)
-        {
-            await _mediator.Send(createCompanyCommand);
-
-            return Ok();
-        }
-
-        [HttpGet("activate")]
-        public async Task<IActionResult> ActivateCompany([FromQuery] ActivateCompanyCommand activateCompanyCommand)
-        {
-            var activated = await _mediator.Send(activateCompanyCommand);
-
-            if (activated) return Ok ();
-
-            return BadRequest("Invalid Token");
         }
     }
 }
