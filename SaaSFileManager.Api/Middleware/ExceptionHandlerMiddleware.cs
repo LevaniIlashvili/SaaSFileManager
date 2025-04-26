@@ -46,6 +46,9 @@ namespace SaaSFileManager.Api.Middleware
                 case NotFoundException:
                     httpStatusCode = HttpStatusCode.NotFound;
                     break;
+                case UnauthorizedAccessException:
+                    httpStatusCode = HttpStatusCode.Unauthorized;
+                    break;
             }
 
             context.Response.StatusCode = (int)httpStatusCode;
