@@ -6,5 +6,6 @@ namespace SaaSFileManager.Application.Contracts.Persistence
     {
         Task<bool> IsCompanyEmailUnique(string email);
         Task<Company?> GetByActivationToken(string token);
+        Task<Company?> GetByEmailAsync(string email);
     }
 }
