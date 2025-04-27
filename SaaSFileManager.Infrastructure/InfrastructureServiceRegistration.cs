@@ -1,8 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SaaSFileManager.Application.Contracts.Infrastructure;
+using SaaSFileManager.Application.Contracts.Security;
 using SaaSFileManager.Application.Models.Mail;
+using SaaSFileManager.Application.Options;
 using SaaSFileManager.Infrastructure.Mail;
+using SaaSFileManager.Infrastructure.Security;
 
 namespace SaaSFileManager.Infrastructure
 {
@@ -12,7 +15,11 @@ namespace SaaSFileManager.Infrastructure
         {
             services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
 
+            services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
+
             services.AddTransient<IEmailService, EmailService>();
+
+            services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
             return services;
         }
