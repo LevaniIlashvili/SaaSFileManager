@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SaaSFileManager.Application.Contracts.Infrastructure;
-using SaaSFileManager.Application.Contracts.Security;
 using SaaSFileManager.Application.Models.Mail;
 using SaaSFileManager.Application.Options;
 using SaaSFileManager.Infrastructure.Mail;
@@ -20,6 +19,8 @@ namespace SaaSFileManager.Infrastructure
             services.AddTransient<IEmailService, EmailService>();
 
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+
+            services.AddScoped<ILoggedInUserService, LoggedInUserService>();
 
             return services;
         }
