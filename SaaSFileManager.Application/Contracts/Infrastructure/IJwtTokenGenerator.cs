@@ -1,4 +1,4 @@
-﻿namespace SaaSFileManager.Application.Contracts.Security
+﻿namespace SaaSFileManager.Application.Contracts.Infrastructure
 {
     public interface IJwtTokenGenerator
     {
