@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SaaSFileManager.Application.Features.Auth.Commands.ActivateCompany;
+using SaaSFileManager.Application.Features.Companies.Commands.ChangePassword;
 
 namespace SaaSFileManager.Api.Controllers
 {
@@ -14,5 +14,13 @@ namespace SaaSFileManager.Api.Controllers
         {
             _mediator = mediator;
         }
+
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangeCompanyPasswordCommand request)
+        {
+            await _mediator.Send(request);
+            return Ok();
+        }
     }
+
 }
