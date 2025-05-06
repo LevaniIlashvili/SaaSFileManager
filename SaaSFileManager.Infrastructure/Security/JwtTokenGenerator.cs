@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using SaaSFileManager.Application.Contracts.Security;
+using SaaSFileManager.Application.Contracts.Infrastructure;
 using SaaSFileManager.Application.Options;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -18,24 +17,23 @@ namespace SaaSFileManager.Infrastructure.Security
             _jwtSettings = jwtSettings.Value;
         }
 
-        public string GenerateToken(Guid companyId, string email)
+        public string GenerateToken(Guid userId, string email)
         {
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, companyId.ToString()),
+                new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email, email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                _jwtSettings.Key));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
                 issuer: _jwtSettings.Issuer,
                 audience: _jwtSettings.Audience,
                 claims: claims,
-                expires: DateTime.UtcNow.AddHours(1),
+                expires: DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes),
                 signingCredentials: credentials
             );
 
