@@ -1,6 +1,6 @@
 ﻿using MediatR;
+using SaaSFileManager.Application.Contracts.Infrastructure;
 using SaaSFileManager.Application.Contracts.Persistence;
-using SaaSFileManager.Application.Contracts.Security;
 
 namespace SaaSFileManager.Application.Features.Auth.Queries.LoginCompany
 {
@@ -26,7 +26,7 @@ namespace SaaSFileManager.Application.Features.Auth.Queries.LoginCompany
 
             if (!company.IsActivated)
             {
-                throw new InvalidOperationException("Company has not activated the account.");
+                throw new Exceptions.AccountNotActivatedException("Company has not activated the account.");
             }
 
             var token = _jwtTokenGenerator.GenerateToken(company.Id, company.Email);
