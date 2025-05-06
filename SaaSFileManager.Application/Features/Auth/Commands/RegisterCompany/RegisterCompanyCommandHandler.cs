@@ -44,7 +44,7 @@ namespace SaaSFileManager.Application.Features.Auth.Commands.CreateCompany
 
             company = await _companyRepository.AddAsync(company);
 
-            var activationLink = $"{_appSettings.BaseUrl}/api/company/activate?token={token}";
+            var activationLink = $"{_appSettings.BaseUrl}/api/auth/company/activate/{token}";
             await _emailService.SendActivationEmailAsync(company.Email, activationLink);
 
             return company.Id;
