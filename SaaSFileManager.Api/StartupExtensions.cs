@@ -17,6 +17,8 @@ namespace SaaSFileManager.Api
             builder.Services.AddPersistenceServices(builder.Configuration);
             builder.Services.AddInfrastructureServices(builder.Configuration);
 
+            builder.Services.AddHttpContextAccessor();  
+
             var jwtSettings = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -44,6 +46,8 @@ namespace SaaSFileManager.Api
         public static WebApplication ConfigurePipeline(this WebApplication app)
         {
             app.UseCustomExceptionHandler();
+
+            app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
