@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SaaSFileManager.Application.Features.Companies.Commands.ChangeInformation;
 using SaaSFileManager.Application.Features.Companies.Commands.ChangePassword;
+using SaaSFileManager.Application.Features.Companies.Queries.GetCompanyDetails;
 
 namespace SaaSFileManager.Api.Controllers
 {
@@ -14,6 +15,14 @@ namespace SaaSFileManager.Api.Controllers
         public CompanyController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<CompanyDetailsVm>> GetCompanyDetails()
+        {
+            var query = new GetCompanyDetailsQuery();
+            var company = await _mediator.Send(query);
+            return Ok(company);
         }
 
         [HttpPost("change-password")]
