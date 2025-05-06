@@ -41,13 +41,15 @@ namespace SaaSFileManager.Api.Middleware
                     break;
                 case BadRequestException badRequestException:
                     httpStatusCode = HttpStatusCode.BadRequest;
-                    result = badRequestException.Message;
                     break;
                 case NotFoundException:
                     httpStatusCode = HttpStatusCode.NotFound;
                     break;
                 case UnauthorizedAccessException:
                     httpStatusCode = HttpStatusCode.Unauthorized;
+                    break;
+                case AccountNotActivatedException:
+                    httpStatusCode = HttpStatusCode.Forbidden;
                     break;
             }
 
