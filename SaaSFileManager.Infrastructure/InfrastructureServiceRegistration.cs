@@ -18,6 +18,8 @@ namespace SaaSFileManager.Infrastructure
 
             services.AddTransient<IEmailService, EmailService>();
 
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();

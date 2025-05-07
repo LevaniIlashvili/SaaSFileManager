@@ -8,18 +8,20 @@ namespace SaaSFileManager.Application.Features.Auth.Queries.LoginCompany
     {
         private readonly ICompanyRepository _companyRepository;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public LoginCompanyQueryHandler(ICompanyRepository companyRepository, IJwtTokenGenerator jwtTokenGenerator)
+        public LoginCompanyQueryHandler(ICompanyRepository companyRepository, IJwtTokenGenerator jwtTokenGenerator, IPasswordHasher passwordHasher)
         {
             _companyRepository = companyRepository;
             _jwtTokenGenerator = jwtTokenGenerator;
+            _passwordHasher = passwordHasher;
         }
 
         public async Task<string> Handle(LoginCompanyQuery request, CancellationToken cancellationToken)
         {
             var company = await _companyRepository.GetByEmailAsync(request.Email);
 
-            if (company == null || !BCrypt.Net.BCrypt.Verify(request.Password, company.PasswordHash))
+            if (company == null || !_passwordHasher.Verify(request.Password, company.PasswordHash))
             {
                 throw new UnauthorizedAccessException("Invalid credentials");
             }

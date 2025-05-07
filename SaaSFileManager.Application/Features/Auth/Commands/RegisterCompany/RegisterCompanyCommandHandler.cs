@@ -13,17 +13,20 @@ namespace SaaSFileManager.Application.Features.Auth.Commands.CreateCompany
         private readonly ICompanyRepository _companyRepository;
         private readonly IMapper _mapper;
         private readonly IEmailService _emailService;
+        private readonly IPasswordHasher _passwordHasher;
         private readonly ApplicationSettings _appSettings;
 
         public RegisterCompanyCommandHandler(
             ICompanyRepository companyRepository,
             IMapper mapper,
             IEmailService emailService,
+            IPasswordHasher passwordHasher,
             IOptions<ApplicationSettings> appSettings)
         {
             _companyRepository = companyRepository;
             _mapper = mapper;
             _emailService = emailService;
+            _passwordHasher = passwordHasher;
             _appSettings = appSettings.Value;
         }
 
@@ -37,7 +40,7 @@ namespace SaaSFileManager.Application.Features.Auth.Commands.CreateCompany
 
             var company = _mapper.Map<Company>(request);
 
-            company.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
+            company.PasswordHash = _passwordHasher.Hash(request.Password);
 
             var token = Guid.NewGuid().ToString();
             company.ActivationToken = token;
