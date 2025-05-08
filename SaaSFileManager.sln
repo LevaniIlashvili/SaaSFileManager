@@ -24,9 +24,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaaSFileManager.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaaSFileManager.Persistence", "SaaSFileManager.Persistence\SaaSFileManager.Persistence.csproj", "{23A91D1E-D9D0-4E28-B15E-5D425FB438BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaaSFileManager.Infrastructure", "SaaSFileManager.Infrastructure\SaaSFileManager.Infrastructure.csproj", "{69845CB0-93C5-442D-B01F-39A69E7F001D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaaSFileManager.Infrastructure", "SaaSFileManager.Infrastructure\SaaSFileManager.Infrastructure.csproj", "{69845CB0-93C5-442D-B01F-39A69E7F001D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaaSFileManager.Api", "SaaSFileManager.Api\SaaSFileManager.Api.csproj", "{8B8D73CF-7DEE-44D5-BF7E-7E47E32572F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaaSFileManager.Api", "SaaSFileManager.Api\SaaSFileManager.Api.csproj", "{8B8D73CF-7DEE-44D5-BF7E-7E47E32572F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
