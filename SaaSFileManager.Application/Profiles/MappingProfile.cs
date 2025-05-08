@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using SaaSFileManager.Application.Features.Auth.Commands.CreateCompany;
 using SaaSFileManager.Application.Features.Companies.Queries.GetCompanyDetails;
+using SaaSFileManager.Application.Features.SubscriptionPlans.Queries.GetSubscriptionPlanDetails;
+using SaaSFileManager.Application.Features.SubscriptionPlans.Queries.GetSubscriptionPlans;
 using SaaSFileManager.Domain.Entities;
 
 namespace SaaSFileManager.Application.Profiles
@@ -11,6 +13,8 @@ namespace SaaSFileManager.Application.Profiles
         {
             CreateMap<RegisterCompanyCommand, Company>().ReverseMap();
             CreateMap<Company, CompanyDetailsVm>().ReverseMap();
+            CreateMap<SubscriptionPlan, SubscriptionPlanVm>().ReverseMap();
+            CreateMap<SubscriptionPlan, SubscriptionPlanDetailsVm>().ReverseMap();
         }
     }
 }
