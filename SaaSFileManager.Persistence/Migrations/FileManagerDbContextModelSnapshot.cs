@@ -201,8 +201,8 @@ namespace SaaSFileManager.Persistence.Migrations
                     b.Property<DateTime>("SubscribedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("SubscriptionPlanId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("SubscriptionPlanId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -265,16 +265,11 @@ namespace SaaSFileManager.Persistence.Migrations
 
             modelBuilder.Entity("SaaSFileManager.Domain.Entities.SubscriptionPlan", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("AllowExtraFiles")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("AllowExtraUsers")
                         .HasColumnType("bit");
 
                     b.Property<int>("FileLimitPerMonth")
@@ -287,7 +282,7 @@ namespace SaaSFileManager.Persistence.Migrations
                     b.Property<decimal?>("PricePerExtraFile")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal?>("PricePerExtraUser")
+                    b.Property<decimal>("PricePerUser")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("StartingPrice")
@@ -299,6 +294,38 @@ namespace SaaSFileManager.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("SubscriptionPlans");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6523feb5-b2e5-44f0-86b1-f3029a966310"),
+                            AllowExtraFiles = false,
+                            FileLimitPerMonth = 10,
+                            Name = "Free",
+                            PricePerUser = 0m,
+                            StartingPrice = 0m,
+                            UserLimit = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("12455643-90a2-4477-9aaa-fa212163bb5f"),
+                            AllowExtraFiles = false,
+                            FileLimitPerMonth = 100,
+                            Name = "Basic",
+                            PricePerUser = 5m,
+                            StartingPrice = 0m,
+                            UserLimit = 10
+                        },
+                        new
+                        {
+                            Id = new Guid("3ea029f3-bdd3-4ca4-9331-78f269d0d742"),
+                            AllowExtraFiles = true,
+                            FileLimitPerMonth = 1000,
+                            Name = "Premium",
+                            PricePerExtraFile = 0.5m,
+                            PricePerUser = 0m,
+                            StartingPrice = 300m
+                        });
                 });
 
             modelBuilder.Entity("SaaSFileManager.Domain.Entities.BillingRecord", b =>

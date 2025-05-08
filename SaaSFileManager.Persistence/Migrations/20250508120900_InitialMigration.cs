@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace SaaSFileManager.Persistence.Migrations
 {
     /// <inheritdoc />
@@ -22,7 +24,7 @@ namespace SaaSFileManager.Persistence.Migrations
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Industry = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsActivated = table.Column<bool>(type: "bit", nullable: false),
-                    ActivationToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ActivationToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CompanySubscriptionPlanId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -38,15 +40,13 @@ namespace SaaSFileManager.Persistence.Migrations
                 name: "SubscriptionPlans",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FileLimitPerMonth = table.Column<int>(type: "int", nullable: false),
                     UserLimit = table.Column<int>(type: "int", nullable: true),
+                    PricePerUser = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     StartingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     AllowExtraFiles = table.Column<bool>(type: "bit", nullable: false),
-                    AllowExtraUsers = table.Column<bool>(type: "bit", nullable: false),
-                    PricePerExtraUser = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     PricePerExtraFile = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
@@ -113,7 +113,7 @@ namespace SaaSFileManager.Persistence.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SubscriptionPlanId = table.Column<int>(type: "int", nullable: false),
+                    SubscriptionPlanId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SubscribedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CanceledAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -138,7 +138,8 @@ namespace SaaSFileManager.Persistence.Migrations
                 name: "FileAccesses",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CompanyFileId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
@@ -191,6 +192,16 @@ namespace SaaSFileManager.Persistence.Migrations
                         principalTable: "CompanySubscriptions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "SubscriptionPlans",
+                columns: new[] { "Id", "AllowExtraFiles", "FileLimitPerMonth", "Name", "PricePerExtraFile", "PricePerUser", "StartingPrice", "UserLimit" },
+                values: new object[,]
+                {
+                    { new Guid("12455643-90a2-4477-9aaa-fa212163bb5f"), false, 100, "Basic", null, 5m, 0m, 10 },
+                    { new Guid("3ea029f3-bdd3-4ca4-9331-78f269d0d742"), true, 1000, "Premium", 0.5m, 0m, 300m, null },
+                    { new Guid("6523feb5-b2e5-44f0-86b1-f3029a966310"), false, 10, "Free", null, 0m, 0m, 1 }
                 });
 
             migrationBuilder.CreateIndex(
