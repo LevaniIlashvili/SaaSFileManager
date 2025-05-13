@@ -26,6 +26,11 @@ namespace SaaSFileManager.Persistence
                 .HasForeignKey(fa => fa.FileId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<CompanySubscription>()
+                .HasIndex(cs => cs.CompanyId)
+                .HasFilter("CanceledAt IS NULL")
+                .IsUnique();
+
             modelBuilder.Entity<SubscriptionPlan>().HasData(
                     new SubscriptionPlan
                     {
