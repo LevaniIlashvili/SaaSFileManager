@@ -5,7 +5,7 @@ using SaaSFileManager.Application.Features.CompanySubscriptions.Queries.GetCompa
 
 namespace SaaSFileManager.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/company-subscription")]
     [ApiController]
     public class CompanySubscriptionController : ControllerBase
     {
@@ -16,7 +16,7 @@ namespace SaaSFileManager.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("{SubscriptionPlanId}")]
+        [HttpPost("select/{SubscriptionPlanId}")]
         public async Task<IActionResult> ChooseSubscription([FromRoute] ChooseSubscriptionPlanCommand command)
         {
             await _mediator.Send(command);
