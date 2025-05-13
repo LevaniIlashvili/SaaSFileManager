@@ -17,6 +17,8 @@ namespace SaaSFileManager.Persistence
 
             services.AddScoped<ICompanyRepository, CompanyRepository>();
 
+            services.AddScoped<ICompanySubscriptionRepository, CompanySubscriptionRepository>();
+
             return services;
         }
     }
