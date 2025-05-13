@@ -51,6 +51,9 @@ namespace SaaSFileManager.Api.Middleware
                 case AccountNotActivatedException:
                     httpStatusCode = HttpStatusCode.Forbidden;
                     break;
+                case ConflictException:
+                    httpStatusCode = HttpStatusCode.Conflict;
+                    break;
             }
 
             context.Response.StatusCode = (int)httpStatusCode;
