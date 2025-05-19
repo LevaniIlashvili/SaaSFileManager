@@ -15,6 +15,7 @@ namespace SaaSFileManager.Domain.Entities
 
         public string? PasswordHash { get; set; } // null until activated
         public bool IsActivated { get; set; } // false until user completes activation
+        public Guid? ActivationToken { get; set; }
 
         public EmployeeRole Role { get; set; } = EmployeeRole.User;
     }
