@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SaaSFileManager.Application.Features.Companies.Commands.AddEmployee;
 using SaaSFileManager.Application.Features.Companies.Commands.ChangeInformation;
 using SaaSFileManager.Application.Features.Companies.Commands.ChangePassword;
 using SaaSFileManager.Application.Features.Companies.Queries.GetCompanyDetails;
@@ -37,6 +38,14 @@ namespace SaaSFileManager.Api.Controllers
         {
             await _mediator.Send(request);
             return Ok();
+        }
+
+        [HttpPost("employees")]
+        public async Task<ActionResult<Guid>> AddEmployee([FromBody] AddEmployeeCommand command)
+        {
+            var employeeId = await _mediator.Send(command);
+
+            return Ok(employeeId);
         }
     }
 
