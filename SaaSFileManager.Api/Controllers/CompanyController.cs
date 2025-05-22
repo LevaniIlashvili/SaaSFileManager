@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SaaSFileManager.Application.Features.Companies.Commands.AddEmployee;
 using SaaSFileManager.Application.Features.Companies.Commands.ChangeInformation;
@@ -9,6 +10,7 @@ using SaaSFileManager.Application.Features.Companies.Queries.GetEmployees;
 
 namespace SaaSFileManager.Api.Controllers
 {
+    [Authorize(Roles = "Company")]
     [Route("api/[controller]")]
     [ApiController]
     public class CompanyController : ControllerBase

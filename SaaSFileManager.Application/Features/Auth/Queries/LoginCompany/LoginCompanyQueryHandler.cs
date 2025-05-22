@@ -31,7 +31,7 @@ namespace SaaSFileManager.Application.Features.Auth.Queries.LoginCompany
                 throw new Exceptions.AccountNotActivatedException("Company has not activated the account.");
             }
 
-            var token = _jwtTokenGenerator.GenerateToken(company.Id, company.Email);
+            var token = _jwtTokenGenerator.GenerateToken(company.Id, company.Email, "Company");
 
             return token;
         }
