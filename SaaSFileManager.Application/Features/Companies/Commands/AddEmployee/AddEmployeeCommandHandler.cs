@@ -24,6 +24,8 @@ namespace SaaSFileManager.Application.Features.Companies.Commands.AddEmployee
 
         public async Task<Guid> Handle(AddEmployeeCommand command, CancellationToken cancellationToken)
         {
+            var companyId = _loggedInUserService.UserId;
+
             var validator = new AddEmployeeCommandValidator();
             var validationResult = await validator.ValidateAsync(command, cancellationToken);
 
@@ -40,7 +42,6 @@ namespace SaaSFileManager.Application.Features.Companies.Commands.AddEmployee
             }
                
 
-            var companyId = _loggedInUserService.UserId;
 
             var activationToken = Guid.NewGuid();
 
