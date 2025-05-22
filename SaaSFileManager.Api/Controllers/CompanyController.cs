@@ -4,6 +4,7 @@ using SaaSFileManager.Application.Features.Companies.Commands.AddEmployee;
 using SaaSFileManager.Application.Features.Companies.Commands.ChangeInformation;
 using SaaSFileManager.Application.Features.Companies.Commands.ChangePassword;
 using SaaSFileManager.Application.Features.Companies.Queries.GetCompanyDetails;
+using SaaSFileManager.Application.Features.Companies.Queries.GetEmployees;
 
 namespace SaaSFileManager.Api.Controllers
 {
@@ -38,6 +39,15 @@ namespace SaaSFileManager.Api.Controllers
         {
             await _mediator.Send(request);
             return Ok();
+        }
+
+        [HttpGet("employees")]
+        public async Task<ActionResult<List<EmployeeVm>>> GetEmployees()
+        {
+            var query = new GetEmployeesQuery();
+            var employees = await _mediator.Send(query);
+
+            return Ok(employees);
         }
 
         [HttpPost("employees")]
