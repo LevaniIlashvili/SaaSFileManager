@@ -19,5 +19,10 @@ namespace SaaSFileManager.Persistence.Repositories
         {
             return await _dbContext.Employees.FirstOrDefaultAsync(e => e.ActivationToken == activationToken);
         }
+
+        public async Task<List<Employee>> ListByCompanyId(Guid companyId)
+        {
+            return await _dbContext.Employees.Where(e => e.CompanyId == companyId).ToListAsync();
+        }
     }
 }
