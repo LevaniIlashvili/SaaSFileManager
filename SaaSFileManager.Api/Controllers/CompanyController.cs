@@ -1,8 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SaaSFileManager.Application.Features.Companies.Commands.AddEmployee;
 using SaaSFileManager.Application.Features.Companies.Commands.ChangeInformation;
 using SaaSFileManager.Application.Features.Companies.Commands.ChangePassword;
+using SaaSFileManager.Application.Features.Companies.Commands.RemoveEmployee;
 using SaaSFileManager.Application.Features.Companies.Queries.GetCompanyDetails;
+using SaaSFileManager.Application.Features.Companies.Queries.GetEmployees;
 
 namespace SaaSFileManager.Api.Controllers
 {
@@ -37,6 +40,33 @@ namespace SaaSFileManager.Api.Controllers
         {
             await _mediator.Send(request);
             return Ok();
+        }
+
+        [HttpGet("employees")]
+        public async Task<ActionResult<List<EmployeeVm>>> GetEmployees()
+        {
+            var query = new GetEmployeesQuery();
+            var employees = await _mediator.Send(query);
+
+            return Ok(employees);
+        }
+
+        [HttpPost("employees")]
+        public async Task<ActionResult<Guid>> AddEmployee([FromBody] AddEmployeeCommand command)
+        {
+            var employeeId = await _mediator.Send(command);
+
+            return Ok(employeeId);
+        }
+
+        [HttpDelete("employees/{employeeId}")]
+        public async Task<ActionResult> RemoveEmployee([FromRoute] Guid employeeId)
+        {
+            var command = new RemoveEmployeeCommand();
+            command.EmployeeId = employeeId;
+            await _mediator.Send(command);
+
+            return NoContent();
         }
     }
 
