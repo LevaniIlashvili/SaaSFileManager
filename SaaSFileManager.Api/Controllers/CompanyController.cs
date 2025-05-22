@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SaaSFileManager.Application.Features.Companies.Commands.AddEmployee;
 using SaaSFileManager.Application.Features.Companies.Commands.ChangeInformation;
 using SaaSFileManager.Application.Features.Companies.Commands.ChangePassword;
+using SaaSFileManager.Application.Features.Companies.Commands.RemoveEmployee;
 using SaaSFileManager.Application.Features.Companies.Queries.GetCompanyDetails;
 using SaaSFileManager.Application.Features.Companies.Queries.GetEmployees;
 
@@ -56,6 +57,16 @@ namespace SaaSFileManager.Api.Controllers
             var employeeId = await _mediator.Send(command);
 
             return Ok(employeeId);
+        }
+
+        [HttpDelete("employees/{employeeId}")]
+        public async Task<ActionResult> RemoveEmployee([FromRoute] Guid employeeId)
+        {
+            var command = new RemoveEmployeeCommand();
+            command.EmployeeId = employeeId;
+            await _mediator.Send(command);
+
+            return NoContent();
         }
     }
 
