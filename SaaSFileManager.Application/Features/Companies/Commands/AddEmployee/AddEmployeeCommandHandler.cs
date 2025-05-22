@@ -55,7 +55,7 @@ namespace SaaSFileManager.Application.Features.Companies.Commands.AddEmployee
 
             await _employeeRepository.AddAsync(employee);
 
-            await _emailService.SendActivationEmailAsync(command.Email, $"{_appSettings.BaseUrl}/api/employees/activate/{activationToken}");
+            await _emailService.SendActivationEmailAsync(command.Email, $"{_appSettings.BaseUrl}/api/employee/activate/{activationToken}");
 
             return employee.Id;
         }
