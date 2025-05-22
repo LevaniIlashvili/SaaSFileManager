@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SaaSFileManager.Application.Features.Auth.Commands.CreateCompany;
 using SaaSFileManager.Application.Features.Companies.Queries.GetCompanyDetails;
+using SaaSFileManager.Application.Features.Companies.Queries.GetEmployees;
 using SaaSFileManager.Application.Features.CompanySubscriptions.Queries.GetCompanyCurrentSubscription;
 using SaaSFileManager.Application.Features.SubscriptionPlans.Queries.GetSubscriptionPlanDetails;
 using SaaSFileManager.Application.Features.SubscriptionPlans.Queries.GetSubscriptionPlans;
@@ -17,6 +18,7 @@ namespace SaaSFileManager.Application.Profiles
             CreateMap<SubscriptionPlan, SubscriptionPlanVm>().ReverseMap();
             CreateMap<SubscriptionPlan, SubscriptionPlanDetailsVm>().ReverseMap();
             CreateMap<CompanySubscription, CompanySubscriptionVM>().ReverseMap();
+            CreateMap<Employee, EmployeeVm>().ReverseMap();
         }
     }
 }
