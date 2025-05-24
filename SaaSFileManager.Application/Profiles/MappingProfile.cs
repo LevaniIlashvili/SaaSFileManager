@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SaaSFileManager.Application.Features.Auth.Commands.CreateCompany;
+using SaaSFileManager.Application.Features.Companies.Commands.RegisterCompany;
 using SaaSFileManager.Application.Features.Companies.Queries.GetCompanyDetails;
 using SaaSFileManager.Application.Features.Companies.Queries.GetEmployees;
 using SaaSFileManager.Application.Features.CompanySubscriptions.Queries.GetCompanyCurrentSubscription;
