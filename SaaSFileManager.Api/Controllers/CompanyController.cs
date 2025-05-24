@@ -1,9 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SaaSFileManager.Application.Features.Companies.Commands.ActivateCompany;
 using SaaSFileManager.Application.Features.Companies.Commands.AddEmployee;
 using SaaSFileManager.Application.Features.Companies.Commands.ChangeInformation;
 using SaaSFileManager.Application.Features.Companies.Commands.ChangePassword;
+using SaaSFileManager.Application.Features.Companies.Commands.RegisterCompany;
 using SaaSFileManager.Application.Features.Companies.Commands.RemoveEmployee;
 using SaaSFileManager.Application.Features.Companies.Queries.GetCompanyDetails;
 using SaaSFileManager.Application.Features.Companies.Queries.GetEmployees;
@@ -20,6 +22,25 @@ namespace SaaSFileManager.Api.Controllers
         public CompanyController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public async Task<IActionResult> CompanyRegister(RegisterCompanyCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [AllowAnonymous]
+        [HttpGet("activate/{token}")]
+        public async Task<IActionResult> ActivateCompany(string token)
+        {
+            var command = new ActivateCompanyCommand();
+            command.Token = token;
+            await _mediator.Send(command);
+
+            return Ok();
         }
 
         [HttpGet]
