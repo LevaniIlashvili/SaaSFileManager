@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using SaaSFileManager.Application.Contracts.Persistence;
 
-namespace SaaSFileManager.Application.Features.Auth.Commands.ActivateCompany
+namespace SaaSFileManager.Application.Features.Companies.Commands.ActivateCompany
 {
     public class ActivateCompanyCommandHandler : IRequestHandler<ActivateCompanyCommand, bool>
     {

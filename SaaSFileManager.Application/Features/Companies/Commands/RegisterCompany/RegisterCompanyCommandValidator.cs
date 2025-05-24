@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using SaaSFileManager.Application.Contracts.Persistence;
 
-namespace SaaSFileManager.Application.Features.Auth.Commands.CreateCompany
+namespace SaaSFileManager.Application.Features.Companies.Commands.RegisterCompany
 {
     public class RegisterCompanyCommandValidator : AbstractValidator<RegisterCompanyCommand>
     {

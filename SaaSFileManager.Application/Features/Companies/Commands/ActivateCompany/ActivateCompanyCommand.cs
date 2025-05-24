@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace SaaSFileManager.Application.Features.Auth.Commands.ActivateCompany
+namespace SaaSFileManager.Application.Features.Companies.Commands.ActivateCompany
 {
     public class ActivateCompanyCommand : IRequest<bool>
     {

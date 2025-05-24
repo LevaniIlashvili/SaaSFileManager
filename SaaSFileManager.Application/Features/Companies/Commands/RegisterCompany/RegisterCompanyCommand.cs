@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace SaaSFileManager.Application.Features.Auth.Commands.CreateCompany
+namespace SaaSFileManager.Application.Features.Companies.Commands.RegisterCompany
 {
     public class RegisterCompanyCommand : IRequest<Guid>
     {
