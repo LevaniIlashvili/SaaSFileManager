@@ -5,6 +5,7 @@ using SaaSFileManager.Application.Models.Mail;
 using SaaSFileManager.Application.Options;
 using SaaSFileManager.Infrastructure.Mail;
 using SaaSFileManager.Infrastructure.Security;
+using SaaSFileManager.Infrastructure.Services;
 
 namespace SaaSFileManager.Infrastructure
 {
@@ -23,6 +24,8 @@ namespace SaaSFileManager.Infrastructure
             services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
             services.AddScoped<ILoggedInUserService, LoggedInUserService>();
+
+            services.AddScoped<IFileStorageService, FileStorageService>();
 
             return services;
         }
