@@ -28,5 +28,9 @@ namespace SaaSFileManager.Infrastructure.Security
                 return userId;
             }
         }
+
+        public string Role =>
+        _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.Role)?.Value
+        ?? throw new UnauthorizedAccessException("Role not found");
     }
 }
