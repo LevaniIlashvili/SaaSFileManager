@@ -7,7 +7,7 @@ namespace SaaSFileManager.Domain.Entities
         public Guid Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public FileType Type { get; set; }
-
+        public Guid UploadedById { get; set; }
         public Guid CompanyId { get; set; }
         public Company Company { get; set; } = default!;
 
