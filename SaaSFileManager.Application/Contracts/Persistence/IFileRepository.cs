@@ -7,5 +7,6 @@ namespace SaaSFileManager.Application.Contracts.Infrastructure
     {
         Task<List<CompanyFile>> GetFilesVisibleToEmployee(Guid employeeId);
         Task<List<CompanyFile>> GetFiles();
+        Task<bool> HasEmployeeAccess(Guid employeeId, Guid fileId);
     }
 }

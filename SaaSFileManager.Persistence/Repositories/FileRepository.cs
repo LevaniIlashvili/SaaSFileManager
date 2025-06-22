@@ -19,5 +19,21 @@ namespace SaaSFileManager.Persistence.Repositories
         {
             return await _dbContext.CompanyFiles.ToListAsync();
         }
+
+        public async Task<bool> HasEmployeeAccess(Guid employeeId, Guid fileId)
+        {
+            var file = await _dbContext.CompanyFiles.FirstAsync(f => f.Id == fileId);
+
+            if (file.IsRestricted)
+            {
+                var access = _dbContext.FileAccesses.FirstOrDefault(fi => fi.FileId == fileId && fi.EmployeeId == employeeId);
+                if (access is null)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }
