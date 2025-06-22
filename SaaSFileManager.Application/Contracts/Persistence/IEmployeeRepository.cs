@@ -7,5 +7,6 @@ namespace SaaSFileManager.Application.Contracts.Persistence
         Task<bool> IsEmployeeEmailUnique(string email);
         Task<Employee?> GetByActivationToken(Guid activationToken);
         Task<List<Employee>> ListByCompanyId(Guid companyId);
+        Task<Employee?> GetByEmail(string email);
     } 
 }
