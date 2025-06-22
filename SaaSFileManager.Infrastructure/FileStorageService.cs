@@ -23,9 +23,13 @@ namespace SaaSFileManager.Infrastructure.Services
             return uniqueName;
         }
 
-        public Task DeleteFileAsync(string relativePath)
+        public async Task<byte[]> GetFileAsync(string storagePath)
         {
-            var fullPath = Path.Combine(Directory.GetCurrentDirectory(), relativePath);
+            var fullPath = Path.Combine(_baseDirectory, Path.GetFileName(storagePath));
+
+            return await File.ReadAllBytesAsync(fullPath);
+        }
+
         public Task DeleteFileAsync(string storagePath)
         {
             var fullPath = Path.Combine(_baseDirectory, Path.GetFileName(storagePath));
