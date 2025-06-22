@@ -35,7 +35,10 @@ namespace SaaSFileManager.Api.Controllers
         }
 
         [HttpPost("upload")]
-        public async Task<IActionResult> UploadFile([FromForm] IFormFile file, [FromForm] bool isRestricted, [FromForm] List<Guid> employeeIds)
+        public async Task<IActionResult> UploadFile(
+            [FromForm] IFormFile file, 
+            [FromForm] bool isRestricted, 
+            [FromForm] List<Guid> accessibleEmployeeIds)
         {
             using var ms = new MemoryStream();
             await file.CopyToAsync(ms);
@@ -47,7 +50,7 @@ namespace SaaSFileManager.Api.Controllers
                 Content = content,
                 ContentType = file.ContentType,
                 IsRestricted = isRestricted,
-                AccessibleEmployeeIds = employeeIds
+                AccessibleEmployeeIds = accessibleEmployeeIds
             };
 
             var fileId = await _mediator.Send(command);
