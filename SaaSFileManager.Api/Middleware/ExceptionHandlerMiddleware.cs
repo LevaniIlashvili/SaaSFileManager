@@ -39,20 +39,29 @@ namespace SaaSFileManager.Api.Middleware
                     httpStatusCode = HttpStatusCode.BadRequest;
                     result = JsonSerializer.Serialize(validationException.ValidationErrors);
                     break;
+
                 case BadRequestException badRequestException:
                     httpStatusCode = HttpStatusCode.BadRequest;
                     break;
+
                 case NotFoundException:
                     httpStatusCode = HttpStatusCode.NotFound;
                     break;
+
                 case UnauthorizedAccessException:
                     httpStatusCode = HttpStatusCode.Unauthorized;
                     break;
+
                 case AccountNotActivatedException:
                     httpStatusCode = HttpStatusCode.Forbidden;
                     break;
+
                 case ConflictException:
                     httpStatusCode = HttpStatusCode.Conflict;
+                    break;
+
+                case ForbiddenException:
+                    httpStatusCode = HttpStatusCode.Forbidden;
                     break;
             }
 
