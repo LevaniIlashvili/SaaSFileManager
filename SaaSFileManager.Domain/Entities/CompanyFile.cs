@@ -5,6 +5,7 @@ namespace SaaSFileManager.Domain.Entities
     public class CompanyFile : AuditableEntity
     {
         public Guid Id { get; set; }
+        public string StoragePath { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public FileType Type { get; set; }
         public Guid UploadedById { get; set; }
