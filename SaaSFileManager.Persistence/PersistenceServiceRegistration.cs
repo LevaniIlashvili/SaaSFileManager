@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SaaSFileManager.Application.Contracts.Infrastructure;
 using SaaSFileManager.Application.Contracts.Persistence;
 using SaaSFileManager.Persistence.Repositories;
 
@@ -20,6 +21,8 @@ namespace SaaSFileManager.Persistence
             services.AddScoped<ICompanySubscriptionRepository, CompanySubscriptionRepository>();
 
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
+            services.AddScoped<IFileRepository, FileRepository>();
 
             return services;
         }
