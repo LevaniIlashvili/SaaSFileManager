@@ -15,16 +15,20 @@ namespace SaaSFileManager.Infrastructure.Services
 
         public async Task<string> SaveFileAsync(string fileName, byte[] content)
         {
-            var filePath = Path.Combine(_baseDirectory, Guid.NewGuid() + "_" + fileName);
+            var uniqueName = Guid.NewGuid() + "_" + fileName;
+            var filePath = Path.Combine(_baseDirectory, uniqueName);
 
             await File.WriteAllBytesAsync(filePath, content);
 
-            return filePath;
+            return uniqueName;
         }
 
         public Task DeleteFileAsync(string relativePath)
         {
             var fullPath = Path.Combine(Directory.GetCurrentDirectory(), relativePath);
+        public Task DeleteFileAsync(string storagePath)
+        {
+            var fullPath = Path.Combine(_baseDirectory, Path.GetFileName(storagePath));
 
             if (File.Exists(fullPath))
             {
