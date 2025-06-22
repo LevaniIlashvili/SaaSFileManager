@@ -51,7 +51,8 @@ namespace SaaSFileManager.Application.Features.Files.Commands.UploadFile
                 CompanyId = companyId,
                 UploadedById = uploadedByIdGuid,
                 IsRestricted = command.IsRestricted,
-                FileAccesses = new List<CompanyFileAccess>()
+                FileAccesses = new List<CompanyFileAccess>(),
+                StoragePath = storagePath
             };
 
             if (command.IsRestricted && command.AccessibleEmployeeIds != null)
