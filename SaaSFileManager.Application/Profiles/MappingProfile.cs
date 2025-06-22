@@ -3,6 +3,7 @@ using SaaSFileManager.Application.Features.Companies.Commands.RegisterCompany;
 using SaaSFileManager.Application.Features.Companies.Queries.GetCompanyDetails;
 using SaaSFileManager.Application.Features.Companies.Queries.GetEmployees;
 using SaaSFileManager.Application.Features.CompanySubscriptions.Queries.GetCompanyCurrentSubscription;
+using SaaSFileManager.Application.Features.Files.Queries.GetFiles;
 using SaaSFileManager.Application.Features.SubscriptionPlans.Queries.GetSubscriptionPlanDetails;
 using SaaSFileManager.Application.Features.SubscriptionPlans.Queries.GetSubscriptionPlans;
 using SaaSFileManager.Domain.Entities;
@@ -19,6 +20,8 @@ namespace SaaSFileManager.Application.Profiles
             CreateMap<SubscriptionPlan, SubscriptionPlanDetailsVm>().ReverseMap();
             CreateMap<CompanySubscription, CompanySubscriptionVM>().ReverseMap();
             CreateMap<Employee, EmployeeVm>().ReverseMap();
+
+            CreateMap<CompanyFile, ListFileVM>().ReverseMap();
         }
     }
 }
