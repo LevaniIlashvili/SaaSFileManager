@@ -7,16 +7,33 @@ namespace SaaSFileManager.Application.Features.Files.Queries.GetFile
     {
         private readonly IFileRepository _fileRepository;
         private readonly IFileStorageService _fileStorageService;
+        private readonly ILoggedInUserService _loggedInUserService;
 
-        public GetFileQueryHandler(IFileRepository fileRepository, IFileStorageService fileStorageService)
+        public GetFileQueryHandler(
+            IFileRepository fileRepository, 
+            IFileStorageService fileStorageService,
+            ILoggedInUserService loggedInUserService)
         {
             _fileRepository = fileRepository;
             _fileStorageService = fileStorageService;
+            _loggedInUserService = loggedInUserService;
         }
 
         public async Task<CompanyFileDTO> Handle(GetFileQuery request, CancellationToken cancellationToken)
         {
-            //var user 
+            var userId = _loggedInUserService.UserId;
+            var userRole = _loggedInUserService.Role;
+
+            if (userRole == "Employee")
+            {
+                var hasAccess = await _fileRepository.HasEmployeeAccess(Guid.Parse(userId), request.Id);
+
+                if (!hasAccess)
+                {
+                    throw new Exceptions.ForbiddenException("You don't have access to this resource");
+                }
+            }
+
             var file = await _fileRepository.GetByIdAsync(request.Id);
 
             if (file is null)
