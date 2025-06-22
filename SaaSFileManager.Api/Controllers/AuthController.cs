@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SaaSFileManager.Application.Features.Auth.Queries.LoginCompany;
+using SaaSFileManager.Application.Features.Auth.Queries.LoginEmployee;
 
 namespace SaaSFileManager.Api.Controllers
 {
@@ -16,7 +17,14 @@ namespace SaaSFileManager.Api.Controllers
         }
 
         [HttpPost("company/login")]
-        public async Task<IActionResult> CompanyLogin(LoginCompanyQuery query)
+        public async Task<ActionResult<string>> CompanyLogin(LoginCompanyQuery query)
+        {
+            var token = await _mediator.Send(query);
+            return Ok(token);
+        }
+
+        [HttpPost("employee/login")]
+        public async Task<ActionResult<string>> EmployeeLogin(LoginEmployeeQuery query)
         {
             var token = await _mediator.Send(query);
             return Ok(token);
