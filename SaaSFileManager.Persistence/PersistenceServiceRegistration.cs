@@ -12,7 +12,15 @@ namespace SaaSFileManager.Persistence
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<FileManagerDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("SaaSFileManagerConnectionString")));
+                options.UseSqlServer(configuration.GetConnectionString("SaaSFileManagerConnectionString"),
+                sqlOptions =>
+                {
+                    sqlOptions.EnableRetryOnFailure(
+                        maxRetryCount: 5,    
+                        maxRetryDelay: TimeSpan.FromSeconds(10),
+                        errorNumbersToAdd: null);
+                }
+                ));
 
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
